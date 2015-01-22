@@ -96,7 +96,7 @@ The addition of these two events allows us to relay standard previous/next media
 
 When we fire these events on the _focused media element_ it enables that element, through any appropriate media control interface, to skip forward and backward between tracks without playlist-like functionality needing to be pre-arranged ahead of time or declared in HTML.
 
-If another `focusable media element` gains _media focus_ then future `next` and `previous` events will be fired only toward this object when it is the _focused media element_. Thus, we can enable full media controls to be used within web applications with the addition of these two events.
+If another _focusable media element_ gains _media focus_ then future `next` and `previous` events will be fired only toward this object when it is the _focused media element_. Thus, we can enable full media controls to be used within web applications with the addition of these two events.
 
 #### What about displaying media information in media control interfaces?
 
