@@ -69,11 +69,11 @@ Different OS platforms introduce different requirements to allow applications to
 
 #### How does this enable interaction with hardware and software media control interfaces?
 
-We can reflect a _focused media element_'s state toward hardware and software based media control interfaces using logical mappings between the in-page `focused media element` and any available media control interface keys.
+We can reflect a _focused media element_'s state toward hardware and software based media control interfaces using logical mappings between the in-page _focused media element_ and any available media control interface keys.
 
-When a user presses a button on any media control interface, its logical meaning can be supplied to the `focused media element` via the existing infrastructure of HTMLMediaElement. For example, when a user clicks 'Play / Pause' on their headphone cord the user agent can then apply either a `play()` or `pause()` action, as appropriate, directly to the `focused media element`.
+When a user presses a button on any media control interface, its logical meaning can be supplied to the _focused media element_ via the existing infrastructure of HTMLMediaElement. For example, when a user clicks 'Play / Pause' on their headphone cord the user agent can then apply either a `play()` or `pause()` action, as appropriate, directly to the _focused media element_.
 
-_Media focus_ enables user agents to relay standard media control interface key presses as [standard media events](https://html.spec.whatwg.org/multipage/embedded-content.html#mediaevents) toward the `focused media element` as follows:
+_Media focus_ enables user agents to relay standard media control interface key presses as [standard media events](https://html.spec.whatwg.org/multipage/embedded-content.html#mediaevents) toward the _focused media element_ as follows:
 
 - Play
 - Pause
@@ -81,22 +81,22 @@ _Media focus_ enables user agents to relay standard media control interface key 
 - Seek backward
 - Volume
 
-Similarly, any changes to the in-page `focused media element` state can be reflected back to media control interfaces, such as [duration](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-duration) and [current time](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-currenttime). For example, if a user pauses the `focused media element` via any in-page media controls interface then this state can also be automatically reflected in all attached media control interfaces.
+Similarly, any changes to the in-page _focused media element_ state can be reflected back to media control interfaces, such as [duration](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-duration) and [current time](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-currenttime). For example, if a user pauses the _focused media element_ via any in-page media controls interface then this state can also be automatically reflected in all attached media control interfaces.
 
 #### What about the forward and backward media control interface keys?
 
 Many types of media control interfaces allow users to skip forward and backward to previous and next tracks in a 'playlist' like way. HTML currently avoids the next to statefully create and consume playlist media declaratively. Instead, such playlist-like functionality can be implemented by web applications in JavaScript.
 
-To enable playlist-like media control interface keys to be fired toward HTMLMediaElement's we thus propose only firing `previous` and `next` events at the current `focused media element`. When a user presses the 'next' button in their media control interface we would thus fire a `next` event directly at the `focused media element` and the web page can either handle that event or not.
+To enable playlist-like media control interface keys to be fired toward HTMLMediaElement's we thus propose only firing `previous` and `next` events at the current _focused media element_. When a user presses the 'next' button in their media control interface we would thus fire a `next` event directly at the _focused media element_ and the web page can either handle that event or not.
 
-The addition of these two events allows us to relay standard previous/next media control interface key presses toward the `focused media element` as follows:
+The addition of these two events allows us to relay standard previous/next media control interface key presses toward the _focused media element_ as follows:
 
 - Skip forward
 - Skip backward
 
-When we fire these events on the `focused media element` it enables that element, through any appropriate media control interface, to skip forward and backward between tracks without playlist-like functionality needing to be pre-arranged ahead of time or declared in HTML.
+When we fire these events on the _focused media element_ it enables that element, through any appropriate media control interface, to skip forward and backward between tracks without playlist-like functionality needing to be pre-arranged ahead of time or declared in HTML.
 
-If another `focusable media element` gains _media focus_ then future `next` and `previous` events will be fired only toward this object when it is the `focused media element`. Thus, we can enable full media controls to be used within web applications with the addition of these two events.
+If another `focusable media element` gains _media focus_ then future `next` and `previous` events will be fired only toward this object when it is the _focused media element_. Thus, we can enable full media controls to be used within web applications with the addition of these two events.
 
 #### What about displaying media information in media control interfaces?
 
