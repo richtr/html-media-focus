@@ -4,12 +4,12 @@
 
 This proposal enables web pages to request media focus for any HTML media and for user agents to then _reflect_ the state and events of that media between the page and any hardware and software based media control interfaces available to a user.
 
-*Media focus* allows us to use hardware and software-based media controls to control and interact with ongoing web-based media. Examples of such media controls include, but are not limited to: headphone buttons, homescreen buttons and remote control buttons.
+**Media focus** allows us to use hardware and software-based media controls to control and interact with ongoing web-based media. Examples of such media controls include, but are not limited to: headphone buttons, homescreen buttons and remote control buttons.
 
 For the purpose of setting _media focus_ we define the following:
 
-- a new empty content attribute on `[<video>](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element)` and `[<audio>](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element)` elements called `focusable`, and;
-- a reflected attribute for the new content attribute (above) on `[HTMLMediaElement](https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement)` called `focusable`.
+- a new empty content attribute on [<video>](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element) and [<audio>](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element) elements called `focusable`, and;
+- a reflected attribute for the new content attribute (above) on [HTMLMediaElement](https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement) called `focusable`.
 
 ### Example Usage
 
@@ -31,9 +31,9 @@ A media element can also request media focus with the reflected `focusable` attr
 </script>
 ```
 
-Any HTML media element that has a `focusable` content attribute is called a *focusable media element*.
+Any HTML media element that has a `focusable` content attribute is called a **focusable media element**.
 
-Whenever a `playing` event is fired toward a _focusable media element_ it obtains _media focus_ and is now the *focused media element*. Only one _focusable media element_ can hold _media focus_ at a time. If another _focusable media element_ currently has _media focus_ then the user agent actively pauses that other _focusable media element_ before passing _media focus_ to the new element.
+Whenever a `playing` event is fired toward a _focusable media element_ it obtains _media focus_ and is now the **focused media element**. Only one _focusable media element_ can hold _media focus_ at a time. If another _focusable media element_ currently has _media focus_ then the user agent actively pauses that other _focusable media element_ before passing _media focus_ to the new element.
 
 Any _focusable media element_ can re-gain _media focus_ whenever a `playing` event is fired toward that element (i.e. whenever `.pause()` or `.play()` are called by the developer via JavaScript or by the user via HTML media controls against that _focusable media element_).
 
@@ -42,11 +42,11 @@ Any _focusable media element_ can re-gain _media focus_ whenever a `playing` eve
 HTML Media Focus can be described more formally as follows:
 
 ``` WebIDL
-partial interface [HTMLMediaElement](https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement) {
+partial interface HTMLMediaElement {
   attribute boolean focusable;
 }
 
-partial interface [MediaController](https://html.spec.whatwg.org/multipage/embedded-content.html#mediacontroller) {
+partial interface MediaController {
   attribute boolean focusable;
 }
 ```
@@ -54,10 +54,12 @@ partial interface [MediaController](https://html.spec.whatwg.org/multipage/embed
 By default, `focusable` is always initially set to `false`.
 
 Additional [<video> content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element):
-  `focusable` - Whether to provide _media focus_ to this media resource on play
+
+- `focusable` - Whether to provide _media focus_ to this media resource on play
 
 Additional [<audio> content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element):
-  `focusable` - Whether to provide _media focus_ to this media resource on play
+
+- `focusable` - Whether to provide _media focus_ to this media resource on play
 
 ### Design FAQ
 
