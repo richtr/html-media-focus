@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Media Focus - Demo</title>
+  <script src="js/mediafocus.js"></script>
+  <style>
+    .tab {
+      min-width:80%;
+      border: 1px solid #999;
+      padding: 10px;
+      margin: 10px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<div id="mediacontrols"></div>
+
+<div class="tab">
+  <h1>Tab 1: YouTube</h1>
+  <video src="resources/movie_300.mp4" autoplay controls focusable>
+</div>
+
+<div id="tab2" class="tab">
+  <h1>Tab 2: Spotify</h1>
+  <!-- playlist added on load  -->
+</div>
+
+<div class="tab">
+  <h1>Tab 3: BBC iPlayer</h1>
+  <video src="resources/movie_300.mp4" controls focusable>
+</div>
+
+<div class="tab">
+  <h1>...</h1>
+</div>
+
+<script>
+// Sample playlist
+var currentTrack = 0;
+var playlist = [
+  {
+    artist: "Nils Frahm",
+    track: "You",
+    url: "resources/nils-frahm/01.Nils%20Frahm%20-%20You.mp3"
+  },
+  {
+    artist: "Nils Frahm",
+    track: "Said And Done",
+    url: "resources/nils-frahm/02.Nils%20Frahm%20-%20Said%20And%20Done.mp3"
+  },
+  {
+    artist: "Nils Frahm",
+    track: "Re",
+    url: "resources/nils-frahm/03.Nils%20Frahm%20-%20Re.mp3"
+  },
+  {
+    artist: "Nils Frahm",
+    track: "Do",
+    url: "resources/nils-frahm/04.Nils%20Frahm%20-%20Do.mp3"
+  },
+  {
+    artist: "Nils Frahm",
+    track: "Fa",
+    url: "resources/nils-frahm/05.Nils%20Frahm%20-%20Fa.mp3"
+  }
+];
+</script>
+
+<script>
+// Create and display a new <audio> element to handle a simple 'playlist'
+window.addEventListener('load', function() {
+
+  var player = document.createElement("audio");
+  player.src = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
+  player.src = playlist[currentTrack].url;
+  player.controls = true;
+
+  // Skip forward to next track in the 'playlist'
+  player.addEventListener('next', function() {
+    currentTrack++;
+    if (currentTrack > 4) {
+      currentTrack = 4;
+      return;
+    }
+    player.title = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
+    player.src = playlist[currentTrack].url;
+    player.play();
+  }, true);
+  // Skip backward to previous track in the 'playlist'
+  player.addEventListener('previous', function() {
+    currentTrack--;
+    if (currentTrack < 0) {
+      currentTrack = 0;
+      return;
+    }
+    player.title = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
+    player.src = playlist[currentTrack].url;
+    player.play();
+  }, true);
+
+  // Hint to the UA that media element should gain media focus when playback starts
+  player.focusable = true;
+
+  var tab = document.querySelector("#tab2");
+
+  tab.appendChild(player);
+
+}, true);
+
+// Create and display a remote control to interface the the currently focused media object (if any)
+window.addEventListener('load', function() {
+  var remoteHolder = document.querySelector("#mediacontrols");
+
+  var remoteControl = new GenericRemoteControl();
+
+  // Add remote control UI components to page
+  remoteHolder.appendChild(remoteControl.getSkipBackwardButton());
+  remoteHolder.appendChild(remoteControl.getPlayPauseButton());
+  remoteHolder.appendChild(remoteControl.getSkipForwardButton());
+  remoteHolder.appendChild(remoteControl.getProgressBar());
+}, true);
+
+</script>
+
+</body>
+</html>
