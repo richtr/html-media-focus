@@ -4,6 +4,19 @@
   <title>HTML Media Focus - Demo</title>
   <script src="js/mediafocus.js"></script>
   <style>
+    #mediacontrols {
+      border: 2px solid #666;
+      padding: 10px 10px 18px 10px;
+      position: fixed;
+      background-color: #ccc;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+    #browser {
+      margin-top: 60px;
+    }
     .tab {
       min-width:80%;
       border: 1px solid #999;
@@ -11,29 +24,40 @@
       margin: 10px;
       overflow: hidden;
     }
+
+    #tab2 .nowPlaying {
+      margin: 10px 0;
+    }
+    #tab2 .nowPlaying span {
+      padding: 0 10px;
+    }
   </style>
 </head>
 <body>
 
 <div id="mediacontrols"></div>
 
-<div class="tab">
-  <h1>Tab 1: YouTube</h1>
-  <video src="resources/movie_300.mp4" autoplay controls focusable>
-</div>
+<div id="browser">
 
-<div id="tab2" class="tab">
-  <h1>Tab 2: Spotify</h1>
-  <!-- playlist added on load  -->
-</div>
+  <div class="tab">
+    <h1>Tab 1: YouTube</h1>
+    <video src="resources/movie_300.mp4" autoplay controls focusable>
+  </div>
 
-<div class="tab">
-  <h1>Tab 3: BBC iPlayer</h1>
-  <video src="resources/movie_300.mp4" controls focusable>
-</div>
+  <div id="tab2" class="tab">
+    <h1>Tab 2: Spotify</h1>
+    <!-- playlist added on load  -->
+  </div>
 
-<div class="tab">
-  <h1>...</h1>
+  <div class="tab">
+    <h1>Tab 3: BBC iPlayer</h1>
+    <video src="resources/movie_300.mp4" controls focusable>
+  </div>
+
+  <div class="tab">
+    <h1>...</h1>
+  </div>
+
 </div>
 
 <script>
@@ -72,10 +96,24 @@ var playlist = [
 // Create and display a new <audio> element to handle a simple 'playlist'
 window.addEventListener('load', function() {
 
+  var container = document.querySelector("#tab2");
+
+  var nowPlaying = document.createElement("div");
+  nowPlaying.setAttribute('class', 'nowPlaying');
+  nowPlaying.textContent = "Now Playing:";
+  nowPlaying.css = 'padding: 0 10px;';
+  var trackInfo = document.createElement("span");
+  trackInfo.textContent = "-";
+  nowPlaying.appendChild(trackInfo);
+  container.appendChild(nowPlaying);
+
   var player = document.createElement("audio");
-  player.src = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
+  player.title = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
   player.src = playlist[currentTrack].url;
   player.controls = true;
+
+  // Hint to the UA that media element should gain media focus when playback starts
+  player.focusable = true;
 
   // Skip forward to next track in the 'playlist'
   player.addEventListener('next', function() {
@@ -100,12 +138,11 @@ window.addEventListener('load', function() {
     player.play();
   }, true);
 
-  // Hint to the UA that media element should gain media focus when playback starts
-  player.focusable = true;
+  player.addEventListener('playing', function() {
+    trackInfo.textContent = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
+  }, true);
 
-  var tab = document.querySelector("#tab2");
-
-  tab.appendChild(player);
+  container.appendChild(player);
 
 }, true);
 
