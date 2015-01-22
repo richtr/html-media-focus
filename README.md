@@ -8,7 +8,7 @@ This proposal enables web pages to request media focus for any HTML media and fo
 
 For the purpose of setting _media focus_ we define the following:
 
-- a new empty content attribute on [<video>](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element) and [<audio>](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element) elements called `focusable`, and;
+- a new empty content attribute on [&lt;video&gt;](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element) and [&lt;audio&gt;](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element) elements called `focusable`, and;
 - a reflected attribute for the new content attribute (above) on [HTMLMediaElement](https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement) called `focusable`.
 
 ### Example Usage
