@@ -137,6 +137,17 @@ window.addEventListener('load', function() {
     player.src = playlist[currentTrack].url;
     player.play();
   }, true);
+  // Continue to next track when current track ends
+  player.addEventListener('ended', function() {
+    currentTrack++;
+    if (currentTrack > 4) {
+      currentTrack = 4;
+      return;
+    }
+    player.title = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
+    player.src = playlist[currentTrack].url;
+    player.play();
+  }, true);
 
   player.addEventListener('playing', function() {
     trackInfo.textContent = playlist[currentTrack].artist + " - " + playlist[currentTrack].track;
