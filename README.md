@@ -4,7 +4,7 @@
 
 This proposal enables web pages to request media focus for any HTML media and for user agents to then _reflect_ the state and events of that media between the page and any hardware and software based media control interfaces available to a user.
 
-**Media focus** allows us to use hardware and software-based media controls to control and interact with ongoing web-based media. Examples of such media controls include, but are not limited to: headphone buttons, homescreen buttons and remote control buttons.
+**Media focus** allows us to use hardware and software-based media controls to control and interact with ongoing web-based media. Examples of such media controls include, but are not limited to: headphone buttons, lock screen interfaces and remote control buttons.
 
 For the purpose of setting _media focus_ we define the following:
 
