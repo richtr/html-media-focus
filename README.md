@@ -53,11 +53,11 @@ partial interface MediaController {
 
 By default, `focusable` is always initially set to `false`.
 
-Additional [<video> content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element):
+Additional [&lt;video&gt; content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element):
 
 - `focusable` - Whether to provide _media focus_ to this media resource on play
 
-Additional [<audio> content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element):
+Additional [&lt;audio&gt; content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element):
 
 - `focusable` - Whether to provide _media focus_ to this media resource on play
 
