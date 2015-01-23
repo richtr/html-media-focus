@@ -35,7 +35,7 @@ Any HTML media element that has a `focusable` content attribute is called a **fo
 
 Whenever a `playing` event is fired toward a _focusable media element_ it obtains _media focus_ and is now the **focused media element**. Only one _focusable media element_ can hold _media focus_ at a time. If another _focusable media element_ currently has _media focus_ then the user agent actively pauses that other _focusable media element_ before passing _media focus_ to the new element.
 
-Any _focusable media element_ can re-gain _media focus_ whenever a `playing` event is fired toward that element (i.e. whenever `.pause()` or `.play()` are called by the developer via JavaScript or by the user via HTML media controls against that _focusable media element_).
+Any _focusable media element_ can re-gain _media focus_ whenever a `playing` event is fired toward that element (i.e. whenever `.play()` is called by in-page JavaScript or by the user via HTML media controls against that _focusable media element_).
 
 ### IDL
 
