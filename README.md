@@ -67,6 +67,13 @@ Additional [&lt;audio&gt; content attributes](https://html.spec.whatwg.org/multi
 
 Different OS platforms introduce different requirements to allow applications to gain media focus. Having studied the different approaches, scoping on &lt;audio&gt; and &lt;video&gt; elements allows media focus to be applied in a fully cross-platform way. It also ensures that _media focus_ is only provided when media actually begins playing in the user agent and it provides an excellent foundation in which we can reflect media control interface key presses against HTML media content and vice versa (see next question for more details).
 
+#### Why should this not be the default behavior on all &lt;audio&gt; and &lt;video&gt; elements?
+
+There are two main issues with applying _media focus_ and media controls by default to all &lt;audio&gt; and &lt;video&gt; elements on the web:
+
+1. Web pages can create short bursts of media for e.g. notifications or interstitial advertisements. If this functionality was applied by default to those &lt;audio&gt; and &lt;video&gt; elements then it would cause that media to take the focus away from more useful sources (e.g. Music services, YouTube videos).
+2. Without a way to prioritize _media focus_ there would be no way to decide which media should be paused and which media should be played. In addition there would be no way to meaningfully display what media is being played in a media control interface and no way to apply track seeking from media control interfaces to in-page media.
+
 #### How does this enable interaction with hardware and software media control interfaces?
 
 We can reflect a _focused media element_'s state toward hardware and software based media control interfaces using logical mappings between the in-page _focused media element_ and any available media control interface keys.
