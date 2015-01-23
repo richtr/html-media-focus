@@ -85,9 +85,9 @@ Similarly, any changes to the in-page _focused media element_ state can be refle
 
 #### What about the forward and backward media control interface keys?
 
-Many types of media control interfaces allow users to skip forward and backward to previous and next tracks in a 'playlist' like way. HTML currently avoids the next to statefully create and consume playlist media declaratively. Instead, such playlist-like functionality can be implemented by web applications in JavaScript.
+Many types of media control interfaces allow users to skip forward and backward to previous and next tracks in a 'playlist' like way. HTML currently avoids the need to statefully create and consume playlist media declaratively. Instead, such playlist-like functionality is currently implemented by web applications in their own JavaScript code.
 
-To enable playlist-like media control interface keys to be fired toward HTMLMediaElement's we thus propose only firing `previous` and `next` events at the current _focused media element_. When a user presses the 'next' button in their media control interface we would thus fire a `next` event directly at the _focused media element_ and the web page can either handle that event or not.
+To enable playlist-like media control interface keys we thus propose firing `previous` and `next` events at the current _focused media element_. When a user presses the 'next' button in a media control interface we would thus fire a `next` event directly at the _focused media element_ and the web page can then decide to handle that event or not.
 
 The addition of these two events allows us to relay standard previous/next media control interface key presses toward the _focused media element_ as follows:
 
