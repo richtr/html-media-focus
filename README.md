@@ -65,7 +65,7 @@ Additional [&lt;audio&gt; content attributes](https://html.spec.whatwg.org/multi
 
 #### Why is the scope of media focus on &lt;audio&gt; and &lt;video&gt; elements?
 
-Different OS platforms introduce different requirements to allow applications to gain media focus. Having studied the different approaches, scoping on &lt;audio&gt; and &lt;video&gt; elements allows media focus to be applied in a fully cross-platform way. It also ensures that _media focus_ is only provided when media actually begins playing in the user agent and it provides an excellent foundation in which we can reflect media control interface key presses against HTML media content and vice versa (see next question for more details).
+Different OS platforms introduce different requirements to allow applications to gain media focus. Having studied the different approaches, scoping on &lt;audio&gt; and &lt;video&gt; elements allows media focus to be applied in a fully cross-platform way. It also ensures that _media focus_ is only provided when media actually begins playing in the user agent and it provides an excellent foundation in which we can _reflect_ media control interface key presses against HTML media content and vice versa (see [this question below](#how-does-this-enable-interaction-with-hardware-and-software-media-control-interfaces)).
 
 #### Why should this not be the default behavior on all &lt;audio&gt; and &lt;video&gt; elements?
 
@@ -82,11 +82,11 @@ When a user presses a button on any media control interface, its logical meaning
 
 _Media focus_ enables user agents to relay standard media control interface key presses as [standard media events](https://html.spec.whatwg.org/multipage/embedded-content.html#mediaevents) toward the _focused media element_ as follows:
 
-- Play
-- Pause
-- Seek forward
-- Seek backward
-- Volume
+- playing
+- pause
+- seeking
+- seeked
+- volumechange
 
 Similarly, any changes to the in-page _focused media element_ state can be reflected back to media control interfaces, such as [duration](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-duration) and [current time](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-currenttime). For example, if a user pauses the _focused media element_ via any in-page media controls interface then this state can also be automatically reflected in all attached media control interfaces.
 
