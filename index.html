@@ -41,7 +41,7 @@
 
   <div class="tab">
     <h1>Tab 1: YouTube</h1>
-    <video src="resources/movie_300.mp4" autoplay controls focusable>
+    <video src="resources/movie_300.mp4" autoplay controls remotecontrols>
   </div>
 
   <div id="tab2" class="tab">
@@ -51,7 +51,7 @@
 
   <div class="tab">
     <h1>Tab 3: BBC iPlayer</h1>
-    <video src="resources/movie_300.mp4" controls focusable>
+    <video src="resources/movie_300.mp4" controls remotecontrols>
   </div>
 
   <div class="tab">
@@ -113,7 +113,7 @@ window.addEventListener('load', function() {
   player.controls = true;
 
   // Hint to the UA that media element should gain media focus when playback starts
-  player.focusable = true;
+  player.remoteControls = true;
 
   // Skip forward to next track in the 'playlist'
   player.addEventListener('next', function() {

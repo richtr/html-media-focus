@@ -8,30 +8,30 @@ This proposal enables web pages to request media focus for any HTML media and fo
 
 For the purpose of setting _media focus_ we define the following:
 
-- a new empty content attribute on [&lt;video&gt;](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element) and [&lt;audio&gt;](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element) elements called `focusable`, and;
-- a reflected attribute for the new content attribute (above) on [HTMLMediaElement](https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement) called `focusable`.
+- a new empty content attribute on [&lt;video&gt;](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element) and [&lt;audio&gt;](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element) elements called `remotecontrols`, and;
+- a reflected attribute for the new content attribute (above) on [HTMLMediaElement](https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement) called `remoteControls`.
 
 ### Example Usage
 
-A media element can request media focus with the `focusable` content attribute:
+A media element can request media focus with the `remotecontrols` content attribute:
 
 ``` html
-<video src="myvideo" autoplay controls focusable>
-<audio src="audio.mp3" focusable>
+<video src="myvideo" autoplay controls remotecontrols>
+<audio src="audio.mp3" remotecontrols>
 ```
 
-A media element can also request media focus with the reflected `focusable` attribute:
+A media element can also request media focus with the reflected `remoteControls` attribute:
 
 ``` html
 <script>
   var myAudio = document.createElement('audio');
   myAudio.src = "audio.mp3";
-  myAudio.focusable = true;
-  // myAudio.outerHTML === "<audio src="audio.mp3" focusable=""></audio>"
+  myAudio.remoteControls = true;
+  // myAudio.outerHTML === "<audio src="audio.mp3" remotecontrols=""></audio>"
 </script>
 ```
 
-Any HTML media element that has a `focusable` content attribute is called a **focusable media element**.
+Any HTML media element that has a `remoteControls` content attribute is called a **focusable media element**.
 
 Whenever a `playing` event is fired toward a _focusable media element_ it obtains _media focus_ and is now the **focused media element**. Only one _focusable media element_ can hold _media focus_ at a time. If another _focusable media element_ currently has _media focus_ then the user agent actively pauses that other _focusable media element_ before passing _media focus_ to the new element.
 
@@ -43,23 +43,23 @@ HTML Media Focus can be described more formally as follows:
 
 ``` WebIDL
 partial interface HTMLMediaElement {
-  attribute boolean focusable;
+  attribute boolean remoteControls;
 }
 
 partial interface MediaController {
-  attribute boolean focusable;
+  attribute boolean remoteControls;
 }
 ```
 
-By default, `focusable` is always initially set to `false`.
+By default, `remoteControls` is always initially set to `false`.
 
 Additional [&lt;video&gt; content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element):
 
-- `focusable` - Whether to provide _media focus_ to this media resource on play
+- `remotecontrols` - Whether to provide _media focus_ to this media resource on play and reflect its current state in media control interfaces.
 
 Additional [&lt;audio&gt; content attributes](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element):
 
-- `focusable` - Whether to provide _media focus_ to this media resource on play
+- `remotecontrols` - Whether to provide _media focus_ to this media resource on play and reflect its current state in media control interfaces.
 
 ### Design FAQ
 
@@ -132,7 +132,7 @@ If/when we are able to import Web Audio API-generated content in to an HTMLMedia
 
 ### Demo
 
-This repository contains a simple web-based demo that demonstrates how `focusable` should work and be enforced by user agents. You can view this demo [here](https://richtr.github.io/html-media-focus/).
+This repository contains a simple web-based demo that demonstrates how `remoteControls` should work and be enforced by user agents. You can view this demo [here](https://richtr.github.io/html-media-focus/).
 
 ### Feedback
 

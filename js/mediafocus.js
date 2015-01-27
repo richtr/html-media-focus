@@ -48,29 +48,29 @@ var dropFocus = function(evt) {
 };
 
 var setQueued = function (val) {
-  var oldValue = this._focusable;
-  this._focusable = !!val;
+  var oldValue = this._remoteControls;
+  this._remoteControls = !!val;
 
-  if (this._focusable === true && oldValue !== true) {
+  if (this._remoteControls === true && oldValue !== true) {
     this.addEventListener('playing', transferFocus, true);
     this.addEventListener('ended', dropFocus, true);
-    this.setAttribute('focusable', '');
-  } else if (this._focusable === false && oldValue !== false) {
+    this.setAttribute('remotecontrols', '');
+  } else if (this._remoteControls === false && oldValue !== false) {
     this.removeEventListener('playing', transferFocus, true);
     this.removeEventListener('ended', dropFocus, true);
-    this.removeAttribute('focusable');
+    this.removeAttribute('remotecontrols');
   }
 };
 
 var getQueued = function(val) {
-  return !!this._focusable;
+  return !!this._remoteControls;
 };
 
-// Add focusable to HTMLMediaElement prototype
+// Add remoteControls to HTMLMediaElement prototype
 if (window.HTMLMediaElement !== undefined) {
   Object.defineProperty(
     window.HTMLMediaElement.prototype,
-    "focusable",
+    "remoteControls",
     {
       set: setQueued,
       get: getQueued
@@ -78,12 +78,12 @@ if (window.HTMLMediaElement !== undefined) {
   );
 }
 
-// Add focusable to AudioContext prototype
+// Add remoteControls to AudioContext prototype
 // NOT IMPLEMENTED
 /*if (window.AudioContext !== undefined) {
   Object.defineProperty(
     window.AudioContext.prototype,
-    "focusable",
+    "remoteControls",
     {
       set: setQueued,
       get: getQueued
@@ -91,11 +91,11 @@ if (window.HTMLMediaElement !== undefined) {
   );
 }*/
 
-// Add focusable to MediaController prototype
+// Add remoteControls to MediaController prototype
 if (window.MediaController !== undefined) {
   Object.defineProperty(
     window.MediaController.prototype,
-    "focusable",
+    "remoteControls",
     {
       set: setQueued,
       get: getQueued
@@ -103,12 +103,12 @@ if (window.MediaController !== undefined) {
   );
 }
 
-// Detect and set up focusable media elements on DOM content load
+// Detect and set up remote control media elements on DOM content load
 document.addEventListener('DOMContentLoaded', function() {
   var els = document.querySelectorAll('video,audio');
   for (var i = 0; i < els.length; i++) {
-    if (els[i].getAttribute("focusable") !== undefined) {
-      els[i].focusable = true;
+    if (els[i].getAttribute("remotecontrols") !== undefined) {
+      els[i].remoteControls = true;
     }
   }
 }, false);
