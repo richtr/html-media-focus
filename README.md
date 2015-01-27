@@ -107,18 +107,9 @@ If another _focusable media element_ gains _media focus_ then future `next` and 
 
 #### What about displaying media information in media control interfaces?
 
-Some media control interfaces, such as home screen controls, allow a title and an icon of the currently playing media to be displayed to the user. There is currently no way to provide this type of media information toward a media control interface.
+Some media control interfaces, such as home screen controls, allow a title and an icon of the currently playing media to be displayed to the user. Our proposal is to reuse [`title`](https://html.spec.whatwg.org/multipage/dom.html#attr-title) and [`poster`](https://html.spec.whatwg.org/multipage/embedded-content.html#attr-video-poster) attributes for this purpose (though the `poster` content attribute would also need to be made available on the `HTMLAudioElement` interface).
 
-With the following additions, each with a reflected &lt;audio&gt; and &lt;video&gt; content attribute so they can also be declared in HTML, we can enable the display of media information in media control interfaces as follows:
-
-``` WebIDL
-partial interface HTMLMediaElement {
-  attribute DOMString? title;
-  attribute USVString? icon;
-}
-```
-
-With these additons, it would be possible for a media control interface to display simple metadata for the currently playing media for display in its interface. If title or icon metadata is not provided then suitable defaults could be provided (e.g. the page's title and/or the page's favicon).
+If `title` or `poster` attributes are not provided then suitable defaults could be used (e.g. the web page's title and favicon).
 
 #### What about the Web Audio API?
 
