@@ -16,7 +16,7 @@
 
 7. Use back/forward media keys on keyboard to navigate a Spotify playlist.
 
-8. Join a video chat in appear.in or Hangouts. Anything playing media is paused.
+8. Join a video chat in appear.in or Hangouts. Any playing media is paused.
 
 ### Mobile use cases
 
