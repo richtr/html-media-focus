@@ -101,13 +101,13 @@ The addition of these two events allows us to relay standard previous/next media
 - Skip forward
 - Skip backward
 
-When we fire these events on the _focused media element_ it enables that element, through any appropriate media control interface, to skip forward and backward between tracks without playlist-like functionality needing to be pre-arranged ahead of time or declared in HTML.
+When we fire these events on the _focused media element_ it enables that element, through any appropriate media control interface, to skip forward and backward between tracks without playlist-like functionality needing to be pre-arranged ahead of time or declared in HTML [[example code](https://github.com/richtr/html-media-focus/blob/gh-pages/index.html#L118-L139)].
 
-If another _focusable media element_ gains _media focus_ then future `next` and `previous` events will be fired only toward this object when it is the _focused media element_. Thus, we can enable full media controls to be used within web applications with the addition of these two events.
+If another _focusable media element_ gains _media focus_ then future `next` and `previous` events will be fired only toward that object when it is the _focused media element_. Thus, we can enable full media controls to be used within web applications with the addition of these two event types.
 
 #### What about displaying media information in media control interfaces?
 
-Some media control interfaces, such as home screen controls, allow a title and an icon of the currently playing media to be displayed to the user. Our proposal is to reuse [`title`](https://html.spec.whatwg.org/multipage/dom.html#attr-title) and [`poster`](https://html.spec.whatwg.org/multipage/embedded-content.html#attr-video-poster) attributes for this purpose (though the `poster` content attribute would also need to be made available on the `HTMLAudioElement` interface).
+Some media control interfaces, such as home screen controls, allow a title and an icon of the currently playing media to be displayed to the user. Our proposal is to reuse [`title`](https://html.spec.whatwg.org/multipage/dom.html#attr-title) and [`poster`](https://html.spec.whatwg.org/multipage/embedded-content.html#attr-video-poster) attributes for this purpose (though the `poster` content attribute would then also need to be made available on the `HTMLAudioElement` interface).
 
 If `title` or `poster` attributes are not provided then suitable defaults could be used (e.g. the web page's title and favicon).
 
