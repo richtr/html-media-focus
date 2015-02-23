@@ -113,11 +113,11 @@ If a web app does not handle `previous` or `next` events then no action is taken
 
 If a web app does decide to handle `previous` or `next` events (to e.g. transition between some 'playlist' tracks) then it must, before the _focused media element's_ current event loop **runs-to-completion**, invoke the `play()` method against a _focusable media element_ (either itself or another _focusable media element_ available within its `document`).
 
-When a `play()` method is invoked before the current _focused media element's_ event loop runs-to-completion then we set the _target_ of that method invocation (i.e. the `play()` method's associated `HTMLMediaElement` object) the _focused media element_ ([example code](https://github.com/richtr/html-media-focus/blob/52220642d339a638a419cb4bba00dbb585dae011/index.html#L118-L139)).
+When a `play()` method is invoked before the current _focused media element's_ event loop runs-to-completion then we set the _target_ of that method invocation (i.e. the `play()` method's associated `HTMLMediaElement` object) as the _focused media element_ ([example code](https://github.com/richtr/html-media-focus/blob/52220642d339a638a419cb4bba00dbb585dae011/index.html#L118-L139)).
 
-Similarly, when an `ended` event is fired toward the _focused media element_ and the web app then invokes `play()` against itself or another _focusable media element_ _before its event loop runs-to-completion_ then we set the target of that method invocation (i.e. the `play()` method's parent `HTMLMediaElement` object) to be the _focused media element_ ([example code](https://github.com/richtr/html-media-focus/blob/52220642d339a638a419cb4bba00dbb585dae011/index.html#L140-L150)).
+Similarly, when an `ended` event is fired toward the current _focused media element_ and the web app then invokes `play()` against itself or another _focusable media element_ within its `document` _before that event loop runs-to-completion_ then we set the target of that method invocation (i.e. the `play()` method's parent `HTMLMediaElement` object) to be the _focused media element_ and continue playing from that next track ([example code](https://github.com/richtr/html-media-focus/blob/52220642d339a638a419cb4bba00dbb585dae011/index.html#L140-L150)).
 
-In this way we enable stateless, just-in-time _media sessions_ to be managed by web apps without them losing their current _media focus_ during such transitions.
+By introducing a simple conditional check immediately after `previous`, `next` or `ended` events have been handled by the _focused media element_ the current page can transition to the next or previous track of its choosing without losing its current _media focus_ and without terminating its current OS-level media session privileges.
 
 #### What about displaying media information in media control interfaces?
 
