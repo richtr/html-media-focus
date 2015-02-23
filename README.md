@@ -105,6 +105,20 @@ When we fire these events on the _focused media element_ it enables that element
 
 If another _focusable media element_ gains _media focus_ then future `next` and `previous` events will be fired only toward that object when it is the _focused media element_. Thus, we can enable full media controls to be used within web applications with the addition of these two event types.
 
+#### How can a web app signal that it wants to retain media focus during media transitions?
+
+When `previous` or `next` events are fired toward a _focused media element_ — typically caused by the user pressing related buttons in a media control interface — the web application must decide whether or not it wishes to handle such events.
+
+If a web app does not handle `previous` or `next` events then no action is taken. The current _focused media element_ retains _media focus_ and remains unchanged in its current state.
+
+If a web app does decide to handle `previous` or `next` events (to e.g. transition between some 'playlist' tracks) then it must, before the _focused media element's_ current event loop **runs-to-completion**, invoke the `play()` method against a _focusable media element_ (either itself or another _focusable media element_ available within its `document`).
+
+When a `play()` method is invoked before the current _focused media element's_ event loop runs-to-completion then we set the _target_ of that method invocation (i.e. the `play()` method's associated `HTMLMediaElement` object) the _focused media element_ ([example code](https://github.com/richtr/html-media-focus/blob/52220642d339a638a419cb4bba00dbb585dae011/index.html#L118-L139)).
+
+Similarly, when an `ended` event is fired toward the _focused media element_ and the web app then invokes `play()` against itself or another _focusable media element_ _before its event loop runs-to-completion_ then we set the target of that method invocation (i.e. the `play()` method's parent `HTMLMediaElement` object) to be the _focused media element_ ([example code](https://github.com/richtr/html-media-focus/blob/52220642d339a638a419cb4bba00dbb585dae011/index.html#L140-L150)).
+
+In this way we enable stateless, just-in-time _media sessions_ to be managed by web apps without them losing their current _media focus_ during such transitions.
+
 #### What about displaying media information in media control interfaces?
 
 Some media control interfaces, such as home screen controls, allow a title and an icon of the currently playing media to be displayed to the user. Our proposal is to reuse [`title`](https://html.spec.whatwg.org/multipage/dom.html#attr-title) and [`poster`](https://html.spec.whatwg.org/multipage/embedded-content.html#attr-video-poster) attributes for this purpose (though the `poster` content attribute would then also need to be made available on the `HTMLAudioElement` interface).
