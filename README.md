@@ -1,3 +1,9 @@
+####<font color="red"> This proposal has now been deprecated</font>
+
+<font color="red">Please refer to [whatwg/media-keys/ImplicitMediaControls.md](https://github.com/whatwg/media-keys/blob/gh-pages/ImplicitMediaControls.md) for the updated proposal.</font>
+
+---
+
 ## HTML Media Focus
 
 ### Introduction
